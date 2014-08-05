@@ -19,6 +19,54 @@ class ProductsControllerTest < ActionController::TestCase
     }
   end
 
+  test "product attributes must not be empty" do
+    product=Product.new
+    assert product.invalid?
+    assert product.errors[:title].any?
+    assert product.errors[:description].any?
+    assert product.errors[:image_url].any?
+    assert product.errors[:price].any?
+  end
+
+  test "Product price must be positive" do
+    product=Product.new(
+      :title=>"My Book Title",
+      :description=>"yyyy",
+      :image_url=>"zzz.jpg"
+   )
+    product.price=-1
+    assert product.invalid?
+    assert_equal "must be greater than or equal to 0.01",
+      product.errors[:price].join(';')
+
+    product.price=0
+    assert_equal "must be greater than or equal to 0.01",
+      product.errors[:price].join(';')
+
+    product.price=1
+    assert product.valid?
+  end
+
+  def new_product(image_url)
+    Product.new(
+      :title=>"my book title",
+      :description=>"ysfdsf",
+      :price=>1,
+      :image_url=>image_url
+      )
+  end
+
+  test "image_url" do
+    ok=%w{fred.gif fred.jpg fred.png FRED.JPG FRDD.Jpg http://a.b.c/x/xy/frd.gif}
+    bad=%w{frd.fd fad.gif/more frd.png.more}
+    ok.each do |name|
+      assert new_product(name).valid?,"#{name} shouldn't be invalid"
+    end
+    bad.each do |name|
+      assert new_product(name).invalid?,"#{name} shouldn't be valid"
+    end
+  end
+
   test "should get index" do
     get :index
     assert_response :success
