@@ -12,7 +12,7 @@ class ProductTest < ActiveSupport::TestCase
   		:price=>1,
   		:image_url=>"fred.jpg"
   	)
-  	assert !product.save
-  	assert_equal "has already been taken",product.errors[:title].join(";")
+  	assert !product.save,"不能重复"
+  	# assert_equal "#{product.title}has already been taken",product.errors[:title].join(";")
   end
 end
