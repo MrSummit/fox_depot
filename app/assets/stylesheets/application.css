@@ -10,10 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
- */
-/* Global styles */
+
 
 /* Global styles */
 
@@ -171,10 +168,11 @@
   margin-right: 2em;
 }
 
-#store .entry form,#store .entry form div{
-  display: inline
+/* START:inline */
+#store .entry form, #store .entry form div {
+  display: inline;
 }
-
+/* END:inline */
 
 /* START:cartmain */
 /* Styles for the cart in the main page */
@@ -193,14 +191,53 @@
 }
 /* END:cartmain */
 
-/*Styles for the cart in the sidebar*/
-#cart,#cart table{
+/* START:cartside */
+/* Styles for the cart in the sidebar */
+
+#cart, #cart table {
   font-size: smaller;
-  color: white;
+  color:     white;
 }
 
-#cart table{
-  border-top: 1px dotted #595;
+#cart table {
+  border-top:    1px dotted #595;
   border-bottom: 1px dotted #595;
   margin-bottom: 10px;
 }
+/* END:cartside */
+
+/* START:form */
+/* Styles for order form */
+
+/*.new_order fieldset {
+  background: #efe;
+}
+
+.new_order legend {
+  color: #dfd;
+  background: #141;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+.new_order label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+  display: block;
+}
+
+.new_order select, .new_order textarea, .new_order input {
+  margin-left: 0.5em;
+}
+
+.new_order .submit {
+  margin-left: 4em;
+}
+
+.new_order div {
+  margin: 0.5em 0;
+}*/
+/* END:form */
