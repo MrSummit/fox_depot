@@ -1,0 +1,5 @@
+$('#cart').html(" <%= escape_javascript(render(@cart))%> ");
+
+if($('#cart tr').length==1){$('#cart').show('slow');}
+$('#current_item').css({'color':'red'}).animate({'color': "white"});//先变红再变白
+
